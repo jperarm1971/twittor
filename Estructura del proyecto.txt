@@ -1,0 +1,10 @@
+Explicación del proyecto. 
+El proyecto utiliza la librería mux de go para definir la ruta en las funciones que 
+manejarán dicha ruta. El paquete Handler se encarga De manejar las llamadas a API.
+
+El modelo se define en el paquete models, la conexión a la base de datos se gestiona a través del paquete bd Y la lógica final para la grabación de los datos en la base de datos se hace a través del paquete router.
+
+En este proyecto aparte se utiliza un paquete denominado Middleware que se encarga de cerciorarse de no conexión con la base de datos.
+
+Se podría plantear utilizar una base de datos relacional y el paquete Gorm para gestionar la persistencia.
+
