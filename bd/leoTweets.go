@@ -2,9 +2,10 @@ package bd
 
 import (
 	"context"
+	"fmt"
 	"time"
 
-	"github.com/ptilotta/twittor/models"
+	"github.com/jperarm1971/twittor/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
@@ -24,11 +25,11 @@ func LeoTweets(ID string, pagina int64) ([]*models.DevuelvoTweets, bool) {
 
 	opciones := options.Find()
 	opciones.SetLimit(20)
-	opciones.SetSort(bson.D{{Key: "fecha", Value: -1}})
 	opciones.SetSkip((pagina - 1) * 20)
 
 	cursor, err := col.Find(ctx, condicion, opciones)
 	if err != nil {
+		fmt.Println("primero")
 		return resultados, false
 	}
 
@@ -37,6 +38,7 @@ func LeoTweets(ID string, pagina int64) ([]*models.DevuelvoTweets, bool) {
 		var registro models.DevuelvoTweets
 		err := cursor.Decode(&registro)
 		if err != nil {
+			fmt.Println("segundo" + err.Error())
 			return resultados, false
 		}
 		resultados = append(resultados, &registro)
